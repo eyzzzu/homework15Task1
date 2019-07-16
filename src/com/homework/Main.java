@@ -7,7 +7,7 @@ public class Main {
         TimeSpan testTime2 = new TimeSpan(3, 30);
         TimeSpan testTime3 = new TimeSpan(0, 0);
         TimeSpan testTime4 = new TimeSpan(1, 30);
-        testTime.substract(testTime, 40);
+        testTime.substract(40);
         testTime.multiplicate(1.89);
         testTime2.add(1, 20);
         System.out.println(testTime2);
@@ -18,5 +18,6 @@ public class Main {
         testTime3.add(5.25);
         testTime3.add(2, 15);
         testTime4.add(testTime);
+        testTime2.substract(testTime4);
     }
 }

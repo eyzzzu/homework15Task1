@@ -51,7 +51,7 @@ public class TimeSpan {
     }
 
     //Методы вычитания с разными параметрами ввода
-    public void substract(TimeSpan timeSpan, int setHoursValue, int setMinutesValue) {
+    public void substract(int setHoursValue, int setMinutesValue) {
         if (setMinutesValue > 59) {
             throw new IllegalArgumentException("need value minutes < 60");
         }
@@ -59,19 +59,27 @@ public class TimeSpan {
         findAndPrintFormattedResult(tmpAllMin);
     }
 
-    public void substract(TimeSpan timeSpan, double setHoursValue) {
+    public void substract(TimeSpan timeSpan) {
+
+        if (timeSpan.minutes > 59) {
+            throw new IllegalArgumentException("incorrect method input values!");
+        } else if (getAllMinutsTmpInputForAdd(timeSpan.hours, timeSpan.minutes)
+                > getAllMinutsTmpInputForAdd(this.hours, this.minutes)) {
+            throw new IllegalArgumentException("incorrect method input values!");
+        }
+        int tmpAllMin = getAllMinutsTmp() - getAllMinutsTmpInputForAdd(timeSpan.hours, timeSpan.minutes);
+        findAndPrintFormattedResult(tmpAllMin);
+    }
+
+    public void substract(double setHoursValue) {
         int tmpAllMin = getAllMinutsTmp() - (int) (setHoursValue * ONE_HOUR);
         if (tmpAllMin < 0) {
             throw new IllegalArgumentException("need hours value less TimeSpan value");
         }
-        if (tmpAllMin < ONE_HOUR) {
-            findAndPrintFormattedResult(tmpAllMin);
-        } else {
-            findAndPrintFormattedResult(tmpAllMin);
-        }
+        findAndPrintFormattedResult(tmpAllMin);
     }
 
-    public void substract(TimeSpan timeSpan, int setMinutesValue) {
+    public void substract(int setMinutesValue) {
         int tmpAllMin = getAllMinutsTmp() - setMinutesValue;
         if (tmpAllMin < 0) {
             throw new IllegalArgumentException("need minuts value less TimeSpan value");
